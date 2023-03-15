@@ -1,0 +1,16 @@
+<configuration debug="false">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <springProperty scope="context" name="application" source="spring.application.name" defaultValue="micro-service"/>
+    <springProperty scope="context" name="port" source="server.port" defaultValue="0000"/>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>/workspace/JAVA/ApiConvertirDivisas/LogsK/logs.txt</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

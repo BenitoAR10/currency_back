@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres
+    mem_limit: 512m
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: postgres
+    volumes:
+      - C:\Workspace\JAVA\ApiConvertirDivisas\BDdata:/var/lib/postgresql/data
+  currency-converter:
+    image: demo:1.0.0
+    restart: always
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      URL: ${POSTGRES_URL}
+      USER_NAME: ${POSTGRES_USER}
+      PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - C:\Workspace\JAVA\ApiConvertirDivisas\logsDockerSpring:/Workspace/JAVA/ApiConvertirDivisas/logs
+    depends_on:
+      - postgres
