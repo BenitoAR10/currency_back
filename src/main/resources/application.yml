@@ -10,7 +10,7 @@ spring:
     type: org.postgresql.jdbc2.optional.SimpleDataSource
     username: ${USER_NAME:postgres}
     password: ${PASSWORD:mysecretpassword}
-    url: ${URL:jdbc:postgresql://localhost:5432/postgres}
+    url: ${URL:jdbc:postgresql://localhost:5431/postgres}
   config:
     import: optional:file:.env[.properties]
   jpa:

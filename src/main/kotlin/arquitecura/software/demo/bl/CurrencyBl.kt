@@ -14,6 +14,10 @@ import okhttp3.Request
 import org.springframework.beans.factory.annotation.Value
 import java.lang.Exception
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
+import java.awt.print.Pageable
 import java.util.Date
 import java.util.*
 
@@ -67,6 +71,9 @@ class CurrencyBl @Autowired constructor(private val currencyRepository: Currency
             throw e;
         }
 
-
+    }
+    fun getPaginated(pageNumber: Int, pageSize: Int): Page<Currency> {
+        val pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by("date").descending())
+        return currencyRepository.findAll(pageRequest)
     }
 }

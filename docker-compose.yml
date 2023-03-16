@@ -3,13 +3,16 @@ services:
     image: postgres
     mem_limit: 512m
     ports:
-      - "5432:5432"
+      - "5431:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: postgres
     volumes:
       - C:\Workspace\JAVA\ApiConvertirDivisas\BDdata:/var/lib/postgresql/data
+    networks:
+          - default
+
   currency-converter:
     image: demo:1.0.0
     restart: always
@@ -24,3 +27,25 @@ services:
       - C:\Workspace\JAVA\ApiConvertirDivisas\logsDockerSpring:/Workspace/JAVA/ApiConvertirDivisas/logs
     depends_on:
       - postgres
+    networks:
+        - default
+
+  angular:
+    image: angular-software:1.0.1
+    ports:
+      - "4200:80"
+    volumes:
+      - D:/workspace/KOTLIN/currency_front/nginx.conf:/etc/nginx/nginx.conf
+    restart: always
+    networks:
+        - default
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
+
