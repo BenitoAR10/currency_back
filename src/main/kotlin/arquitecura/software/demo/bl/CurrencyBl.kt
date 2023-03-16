@@ -72,8 +72,8 @@ class CurrencyBl @Autowired constructor(private val currencyRepository: Currency
         }
 
     }
-    fun getPaginated(pageNumber: Int, pageSize: Int): Page<Currency> {
-        val pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by("date").descending())
-        return currencyRepository.findAll(pageRequest)
+    fun getPaginated(pageNumber: Int, pageSize: Int): Any {
+        val pageRequest = currencyRepository.findAll(PageRequest.of(pageNumber, pageSize))
+        return pageRequest;
     }
 }

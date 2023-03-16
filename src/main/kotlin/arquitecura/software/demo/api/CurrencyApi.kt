@@ -22,15 +22,16 @@ class CurrencyApi (val currencyBl: CurrencyBl){
     private val logger: Logger = LoggerFactory.getLogger(CurrencyApi::class.java)
 
     @GetMapping("/currency")
-    fun getExchange(@RequestParam from: String, @RequestParam to: String, @RequestParam amount: BigDecimal): ResponseEntity<ResponseDto<ExchangeDto>>{
+    fun getExchange(@RequestParam from: String, @RequestParam to: String, @RequestParam amount: BigDecimal): ResponseEntity<Any>{
         logger.info("Empezando la logica de negocio");
         val exchangeDto = currencyBl.getExchange(from, to, amount);
-        val responseDto = ResponseDto(exchangeDto, true, null);
-        return ResponseEntity.ok(responseDto);
+        //val responseDto = ResponseDto(exchangeDto, true, null);
+        return ResponseEntity.ok(exchangeDto);
     }
 
     @GetMapping("/page")
-    fun getCurrencies(@RequestParam pageNumber: Int, @RequestParam pageSize: Int): Page<Currency> {
-        return currencyBl.getPaginated(pageNumber, pageSize)
+    fun getCurrencies(@RequestParam pageNumber: Int, @RequestParam pageSize: Int): Any {
+        val list = currencyBl.getPaginated(pageNumber, pageSize)
+        return ResponseEntity.ok(list);
     }
 }
