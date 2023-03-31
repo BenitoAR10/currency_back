@@ -23,8 +23,8 @@ keycloak:
   auth-server-url: http://localhost:8080
   autodetect-bearer-only: true
   credentials:
-    secret: 8xyJriTCOcipybVGLhXSa1H5W5qCvVoD
-  realm: software
+    secret: Qdu5C4z4zLel6thyjr50PVWTEGbff9MO
+  realm: Software
   resource: backend
   ssl-required: external
   use-resource-role-mappings: false
@@ -34,4 +34,4 @@ keycloak:
       securityCollections:
         - name: SERVICIOS DEL ADMINISTRADOR
           patterns:
-            - /api/currency/list
+            - /api/v1/list

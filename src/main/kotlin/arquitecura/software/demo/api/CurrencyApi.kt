@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestController
 import org.slf4j.Logger
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
+//import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import java.math.BigDecimal
+import java.security.Principal
 
 
 @RestController
@@ -28,10 +30,29 @@ class CurrencyApi (val currencyBl: CurrencyBl){
         //val responseDto = ResponseDto(exchangeDto, true, null);
         return ResponseEntity.ok(exchangeDto);
     }
+//    @GetMapping("/user")
+//    @PreAuthorize ("hasAuthority('ROLE_USER')")
+//    fun getUser(): String {
+//        logger.info("Iniciando servicio user")
+//        return "ROLE_USER"
+//    }
+//
+//    @GetMapping("/admin")
+//    @PreAuthorize ("hasAuthority('ROLE_ADMIN')")
+//    fun getAdmin(): String {
+//        logger.info("Iniciando servicio admin")
+//        return "ROLE_ADMIN"
+//    }
 
     @GetMapping("/page")
     fun getCurrencies(@RequestParam pageNumber: Int, @RequestParam pageSize: Int): Any {
         val list = currencyBl.getPaginated(pageNumber, pageSize)
         return ResponseEntity.ok(list);
+    }
+
+    // Forma para hacelro en memorias para estar "loggeado"
+    @GetMapping("/principal")
+    fun info(principal: Principal): String{
+        return principal.toString()
     }
 }

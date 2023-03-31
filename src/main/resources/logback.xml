@@ -4,7 +4,7 @@
     <springProperty scope="context" name="application" source="spring.application.name" defaultValue="micro-service"/>
     <springProperty scope="context" name="port" source="server.port" defaultValue="0000"/>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>/workspace/JAVA/ApiConvertirDivisas/LogsK/logs.txt</file>
+        <file>/home/amirrojas/workspace/KOTLIN/logs_back/logs.txt</file>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
