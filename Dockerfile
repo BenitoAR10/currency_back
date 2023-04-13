@@ -32,5 +32,5 @@ ENV PASSWORD ${POSTGRES_PASSWORD}
 ENV URL ${POSTGRES_URL}
 ENV API_KEY "YEraXsSahmYnVTklREwJ6uvCDwm3VpVS"
 
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.example.demo.DemoApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","arquitecura.software.demo.DemoApplicationKt"]
 

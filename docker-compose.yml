@@ -7,14 +7,15 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: postgres
+      #POSTGRES_DB: postgres
     volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - /home/amirrojas/workspace/KOTLIN/currency_back/BDdata:/var/lib/postgresql/data
     networks:
           - default
 
   currency-converter:
-    image: demo:1.0.0
+    image: demo:3.0.0
     restart: always
     mem_limit: 512m
     ports:
@@ -31,7 +32,7 @@ services:
         - default
 
   angular:
-    image: angular-software:1.0.0
+    image: angular-software:3.0.0
     ports:
       - "4200:80"
     volumes:
